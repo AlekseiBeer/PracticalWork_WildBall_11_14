@@ -1,42 +1,52 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class ScensManager : MonoBehaviour
+namespace WildBall.Manager
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ScensManager : MonoBehaviour
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        }
 
-    public void ResetLavel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+        // Update is called once per frame
+        void Update()
+        {
 
-    public void LoadLavel(int buildIndex)
-    {
-        SceneManager.LoadScene(buildIndex);
-    }
+        }
 
-    public void LoadMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
+        public static void ResetLavel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
-    public void QuitGame()
-    {
+        public static void NextLavel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        public void LoadLavel(int buildIndex)
+        {
+            SceneManager.LoadScene(buildIndex);
+        }
+
+        public void LoadMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        public void QuitGame()
+        {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
 				Application.Quit();
 #endif
+        }
     }
 }
+
+
+
