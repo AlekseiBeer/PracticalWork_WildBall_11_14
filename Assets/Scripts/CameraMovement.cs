@@ -10,8 +10,8 @@ public class CameraMovement : MonoBehaviour
     
     private Transform _playerTransform = null;
     private PlayerMovment _playerMovment = null;
-    
-    void Start()
+
+    private void Awake()
     {
         _playerTransform = _player.GetComponent<Transform>();
         _playerMovment = _player.GetComponent<PlayerMovment>();

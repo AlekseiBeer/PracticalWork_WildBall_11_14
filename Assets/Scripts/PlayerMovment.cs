@@ -18,8 +18,8 @@ namespace WildBall.Player
         [SerializeField] private float _leapTorque = 4f;
         [SerializeField] private float _leapCooldown = 1f;
 
-        private Vector3 _verticalAxis = new(1, 0, 0);
-        private Vector3 _horizontalAxis = new(0, 0, 1);
+        [HideInInspector] public Vector3 _verticalAxis = new(1, 0, 0);
+        [HideInInspector] public Vector3 _horizontalAxis = new(0, 0, 1);
         [HideInInspector] public Vector3 _turnAxis = Vector3.up;
         [HideInInspector] public float Angle;
 

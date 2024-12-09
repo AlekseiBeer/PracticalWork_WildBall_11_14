@@ -5,18 +5,6 @@ namespace WildBall.Manager
 {
     public class ScensManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public static void ResetLavel()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

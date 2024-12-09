@@ -6,6 +6,8 @@ TagManager:
   tags:
   - ScreensUI
   - Death
+  - Impulse
+  - HintTrigger
   layers:
   - Default
   - TransparentFX
