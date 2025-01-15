@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 using WildBall.Player.Inputs;
 
 namespace WildBall.Player
@@ -17,6 +18,9 @@ namespace WildBall.Player
         [Header("Leap Settings")]
         [SerializeField] private float _leapTorque = 4f;
         [SerializeField] private float _leapCooldown = 1f;
+
+        [Header("Particle effects")]
+        [SerializeField] private ParticleSystem _movementEffect = null;
 
         [HideInInspector] public Vector3 _verticalAxis = new(1, 0, 0);
         [HideInInspector] public Vector3 _horizontalAxis = new(0, 0, 1);
@@ -52,6 +56,19 @@ namespace WildBall.Player
             ApplyTorque(_horizontalAxis, _playerInput.horizontal, _sideTorque);
             UpdateAxes(1);
 
+            if (_movementEffect != null)
+            {
+                _movementEffect.transform.position = transform.position - _playerCollider.radius * Vector3.up;
+
+                ParticleSystem.EmissionModule emission = _movementEffect.emission;
+
+                if (_isGrounded)
+                    emission.enabled = true;
+                else 
+                    emission.enabled = false;
+
+            }
+
             if (_playerInput.jump && _isGrounded)
             {
                 Jump();
@@ -60,7 +77,7 @@ namespace WildBall.Player
             {
                 Leap();
             }
-            ResetInputFlags();
+            ResetInputFlags();      
         }
 
         /// <summary>
