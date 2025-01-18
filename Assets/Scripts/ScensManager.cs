@@ -12,7 +12,14 @@ namespace WildBall.Manager
 
         public static void NextLavel()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (SceneManager.GetActiveScene().buildIndex != SceneManager.sceneCountInBuildSettings - 1) 
+            { 
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
+            }
+            else
+            {
+                FindObjectOfType<UI_Manager>().EndGame();
+            }
         }
 
         public void LoadLavel(int buildIndex)

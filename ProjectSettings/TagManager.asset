@@ -8,6 +8,7 @@ TagManager:
   - Death
   - Impulse
   - HintTrigger
+  - Coin
   layers:
   - Default
   - TransparentFX

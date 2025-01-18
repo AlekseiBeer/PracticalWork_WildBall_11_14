@@ -12,6 +12,7 @@ namespace WildBall.Player
         [Header("Particle effects")]
         [SerializeField] private ParticleSystem _repulsionEffect = null;
         [SerializeField] private ParticleSystem _deathEffect = null;
+        [SerializeField] private ParticleSystem _coinEffect = null;
 
         [HideInInspector] public GameObject ObjectRaycast;
 
@@ -19,9 +20,11 @@ namespace WildBall.Player
         private PlayerMovment _playerMovment;
         private HintsController _PlayerHints;
         private Collider _playerCollider;
+        [HideInInspector] public int _coinCount;
 
         private void Awake()
         {
+            _coinCount = 0;
             _playerRigidbody = GetComponent<Rigidbody>();
             _playerMovment = GetComponent<PlayerMovment>();
             _PlayerHints = GetComponent<HintsController>();
@@ -64,6 +67,14 @@ namespace WildBall.Player
             {
                 var hint = _PlayerHints._hints.FirstOrDefault(h => h._hintTrigger == other);
                 _PlayerHints.ShowHint(hint._hintText);
+            }
+
+            if (other.CompareTag("Coin"))
+            {
+                _coinEffect.transform.position = other.transform.position;
+                Destroy(other.transform.parent.gameObject);
+                _coinEffect.Play();
+                _coinCount++;
             }
         }
 
